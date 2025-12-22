@@ -1,2 +1,3 @@
+/dataset
 *.pgm
-*.png
+/Vit/vit_cancer_finetune

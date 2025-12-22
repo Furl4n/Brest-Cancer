@@ -24,7 +24,7 @@ def norm_and_save(arr, fname):
     img_uint8 = (arr_norm * 255).astype(np.uint8)
 
     h, w = img_uint8.shape[:2]
-    scale = 1080/h;
+    scale = 1080/h
     new_width = int(w * scale)
     img_final = cv2.resize(img_uint8, (new_width, 1080))
 

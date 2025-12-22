@@ -7,7 +7,7 @@ transform = transforms.Compose([
     transforms.Grayscale(num_output_channels=3),
     transforms.ToTensor(),
 ])
-dataset = datasets.ImageFolder('dataset', transform=transform)
+dataset = datasets.ImageFolder('dataset_train', transform=transform)
 dataset
 
 loader = torch.utils.data.DataLoader(dataset, batch_size=10, shuffle=False, num_workers=4)
