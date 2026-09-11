@@ -1,3 +1,46 @@
-/dataset
-*.pgm
-/Vit/vit_cancer_finetune
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+env/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Datasets generated or downloaded locally (about 3 GB)
+dataset_orientado/
+dataset_wavelet/
+
+# Images generated during experiments and for local reports
+*.bmp
+*.gif
+*.jpeg
+*.jpg
+*.png
+*.tif
+*.tiff
+*.webp
+
+# Training artifacts and model weights
+*.ckpt
+*.h5
+*.keras
+*.onnx
+*.pt
+*.pth
+*.safetensors
+Vit/Vit_checkpoints/
+
+# Runtime and experiment output
+*.log
+wandb/
+runs/
+tensorboard/
+
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+.vscode/

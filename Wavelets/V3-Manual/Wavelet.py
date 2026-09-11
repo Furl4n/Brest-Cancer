@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 #Transforma em um vetor e passa para float
-img_original = (cv2.imread('mama.pgm', cv2.IMREAD_GRAYSCALE)).astype(np.float32)
+img_original = (cv2.imread('dataset/dataset_val/Benign/0029/C_0029_1.LEFT_MLO.jpg', cv2.IMREAD_GRAYSCALE)).astype(np.float32)
 
 #Faz a decomposição
 coeffs = pywt.wavedec2(img_original, 'db4', 'symmetric', level=2)
@@ -12,8 +12,8 @@ coeffs = pywt.wavedec2(img_original, 'db4', 'symmetric', level=2)
 img_restaurada = pywt.waverec2(coeffs, 'db4', 'symmetric')
 
 #Salva em png
-cv2.imwrite('V3-Manual/Resultados/Original.png', img_original)
-cv2.imwrite('V3-Manual/Resultados/Restaurada.png', img_restaurada)
+cv2.imwrite('Wavelets/V3-manual/Resultados/Original.png', img_original)
+cv2.imwrite('Wavelets/V3-manual/Resultados/Restaurada.png', img_restaurada)
 
 
 # Função para normalizar o coeficiente para 0-255 e uint8 (peguei pronto)
@@ -36,10 +36,10 @@ def norm_and_save(arr, fname):
 # Salva cada coeficiente de cada nível
 for level, coefs in enumerate(coeffs[1:], 1):
     LH, HL, HH = coefs
-    img_LH = norm_and_save(LH, f"V3-Manual/Resultados/LH{level}.png")
-    img_HL = norm_and_save(HL, f"V3-Manual/Resultados/HL{level}.png")
-    img_HH = norm_and_save(HH, f"V3-Manual/Resultados/HH{level}.png")
-    img_LL = norm_and_save(coeffs[0], "V3-Manual/Resultados/LL.png")
+    img_LH = norm_and_save(LH, f"Wavelets/V3-Manual/Resultados/LH{level}.png")
+    img_HL = norm_and_save(HL, f"Wavelets/V3-Manual/Resultados/HL{level}.png")
+    img_HH = norm_and_save(HH, f"Wavelets/V3-Manual/Resultados/HH{level}.png")
+    img_LL = norm_and_save(coeffs[0], "Wavelets/V3-Manual/Resultados/LL.png")
     img_LL = cv2.resize(img_LL, (img_HH.shape[1], img_HH.shape[0]))
 
     print('Shapes:', img_LL.shape, img_LH.shape, img_HL.shape, img_HH.shape)
@@ -49,7 +49,7 @@ for level, coefs in enumerate(coeffs[1:], 1):
     top_row = cv2.hconcat([img_LL, img_LH])
     bottom_row = cv2.hconcat([img_HL, img_HH])
     block = cv2.vconcat([top_row, bottom_row]);
-    cv2.imwrite( f'V3-Manual/Resultados/BLOCK{level}.png', block)
+    cv2.imwrite( f'Wavelets/V3-Manual/Resultados/BLOCK{level}.png', block)
 
 
 
